@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>苹果应用列表</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./js/api.js" charset="utf-8"></script>
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script src="./lib/jquery/jquery.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+    </head>
+    
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form" id="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>状态</th>
+                                        <th>类型</th>
+                                        <th>生成人</th>
+                                        <th>生成ip</th>
+                                        <th>生成时间</th>
+                                        <th>应用名</th>
+                                        <th>版本状态</th>
+                                        <th>应用url</th>
+                                        <th>X5内核</th>
+                                        <th>qq客服</th>
+                                        <th>操作</th>
+                                </thead>
+                                <tbody class="tbody">
+                                    <!--<tr>-->
+                                    <!--    <td>-->
+                                    <!--        <input type="checkbox" name="" lay-skin="primary">-->
+                                    <!--        <input type="hidden" name="" value="" lay-skin="primary">-->
+                                    <!--    </td>-->
+                                    <!--    <td>2017009171822298053</td>-->
+                                    <!--    <td>老王:18925139194</td>-->
+                                    <!--    <td>7829.10</td>-->
+                                    <!--    <td>7854.10</td>-->
+                                    <!--    <td>待确认</td>-->
+                                    <!--    <td>未支付</td>-->
+                                    <!--    <td>未发货</td>-->
+                                    <!--    <td>其他方式</td>-->
+                                    <!--    <td>申通物流</td>-->
+                                    <!--    <td>2017-08-17 18:22</td>-->
+                                    <!--    <td class="td-manage">-->
+                                    <!--        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
+                                    <!--            <i class="layui-icon">&#xe640;</i></a>-->
+                                    <!--    </td>-->
+                                    <!--</tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    <span class="current prev" style="cursor:pointer">上一页</span>
+                                    <span class="current next" style="cursor:pointer">下一页</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+    layui.use(['laydate', 'form'],
+        function() {
+            var laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+        /*-删除*/
+        function member_del(obj, id) {
+            var certid = id;
+            // alert(certid)
+            layer.confirm('确认要删除吗？',function(index) {
+                $.ajax({
+                      url:api+'/admin/packlist/del',
+                      type:'post',
+                      data:{'id':certid},
+                      beforeSend:function (request) {
+                        request.setRequestHeader("token", token);
+                      },
+                      success:function(data){
+                          if(data.code==200){
+                              $(obj).parents("tr").remove();
+                                layer.msg('已删除!', {
+                                    icon: 1,
+                                    time: 1000
+                                });
+                          }else{
+                              layer.msg('删除失败!', {
+                                    icon: 5,
+                                    time: 1000
+                                });
+                          }
+                        
+                          
+                      },
+                      complete: function () {
+                          
+                      },
+                }); 
+            });
+        }
+
+        function delAll(argument) {
+
+            var data = tableCheck.getData();
+
+            layer.confirm('确认要删除吗？' + data,
+            function(index) {
+                //捉到所有被选中的，发异步进行删除
+                layer.msg('删除成功', {
+                    icon: 1
+                });
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            });
+        }
+        function add0(m){return m<10?'0'+m:m }
+        function format(shijianchuo){
+            //shijianchuo是整数，否则要parseInt转换
+            var time = new Date(shijianchuo);
+            var y = time.getFullYear();
+            var m = time.getMonth()+1;
+            var d = time.getDate();
+            var h = time.getHours();
+            var mm = time.getMinutes();
+            var s = time.getSeconds();
+            return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+        }
+        $(function(){
+            function getData(type,page,state,test){
+               $.ajax({
+                      url:api+'/admin/packlist',
+                      type:'get',
+                      data:{'type':type,'page':page,'state':state,'is_beta':test},
+                      beforeSend:function (request) {
+                        request.setRequestHeader("token", token);
+                      },
+                      success:function(data){
+                          if(data.code==503){
+                              set("admintoken", null);
+                              return;
+                          }
+                          $('.tbody').empty()
+                        //   console.log(data)
+                        //   var data = JSON.stringify(datas)
+                        //   data = JSON.parse(data)
+                        //   console.log(data)
+                        //   判断下一页
+                          if(data.data.length==0){
+                              $('.next').hide()
+                          }else{
+                              $('.next').show()
+                          }
+                          var html = '';
+                          for(var i =0;i<data.data.length;i++){
+                              var datastr =  JSON.parse(data.data[i].datastr)
+                              html+='<tr>'
+                              html+=`<td>
+                                        ${data.data[i].id}
+                                        <input type="hidden" name="" value="${data.data[i].id}">
+                                    </td>
+                                    <td>${(data.data[i].state)==1?'成功':'失败'}</td>
+                                    <td>${(data.data[i].type)==1?'安卓':'苹果'}</td>
+                                    <td>${data.data[i].username}</td>
+                                    <td>${data.data[i].ip}</td>
+                                    <td>${format(data.data[i].create_at)}</td>
+                                    <td>${datastr.name}</td>
+                                    <td>${(datastr.role==0)?"试用版本":"正式版本"}</td>
+                                    <td>${datastr.urlchart}</td>
+                                    <td>${(datastr.x5==true)?"开启":"关闭"}</td>
+                                    <td>${(datastr.qq)?datastr.qq:'无数据'}</td>
+                                    <td class="td-manage">
+                                        <a title="删除" onclick="member_del(this,'${data.data[i].id}')" href="javascript:;">
+                                            <i class="layui-icon">&#xe640;</i></a>
+                                    </td>`
+                              html+='</tr>'
+                          }
+                        console.log(html)
+                          $('.tbody').html(html)
+                          
+                      },
+                      complete: function () {
+                          
+                      },
+                }); 
+            }
+            
+            getData(2,1,1,1)
+            var page= 1;
+            // 上一页 下一页
+            $('.prev').click(function(){
+                page--
+                // console.log(page)
+                if(page<=1){
+                    page=1;
+                    // console.log(page)
+                    getData(2,page,1,1)
+                }
+            })
+            $('.next').click(function(){
+                // alert(12346)
+                page++
+                getData(2,page,1,1)
+            })
+            
+        })
+        
+        </script>
+        
+
+</html>

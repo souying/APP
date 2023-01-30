@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎使用一键打包系统</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./js/api.js" charset="utf-8"></script>
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script src="./lib/jquery/jquery.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <blockquote class="layui-elem-quote">欢迎管理员：
+                                <span class="x-red x-name">test</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="x-time">当前时间</span>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据统计</div>
+                        <div class="layui-card-body ">
+                            <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>次数卡密</h3>
+                                        <p>
+                                            <cite class="kami-c"></cite>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>用户数量</h3>
+                                        <p>
+                                            <cite class="usernumber"></cite>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>天数卡密</h3>
+                                        <p>
+                                            <cite class="kami-t">99</cite>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>今日注册</h3>
+                                        <p>
+                                            <cite class="today_user_create">0</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>卡密使用</h3>
+                                        <p>
+                                            <cite class="kami-no">0</cite>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6 ">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>今日登陆</h3>
+                                        <p>
+                                            <cite class="today_user_login">0</cite></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">打包
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">iOS</span></div>
+                        <div class="layui-card-body  ">
+                            <p class="layuiadmin-big-font pack_ios">0</p>
+                            <p>打包数量
+                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">打包
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">安卓</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font pack_andriod">0</p>
+                            <p>打包数量
+                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">生成
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">证书</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font cert">0</p>
+                            <p>生成数量
+
+                                <i class="layui-inline layui-icon layui-icon-face-smile-b"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">错误
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">数量</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font pack_error">0</p>
+                            <p>打包错误
+                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">开发团队</div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table">
+                                <tbody>
+                                    <tr>
+                                        <th>版权所有</th>
+                                        <td>365yun(365yun)
+                                            <a href="http://www.365yun.cc/" target="_blank">访问官网</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>开发者</th>
+                                        <td>潜水的酸菜鱼</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <style id="welcome_style"></style>
+                <div class="layui-col-md12">
+                    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由云打包提供技术支持。</blockquote></div>
+            </div>
+        </div>
+        </div>
+    </body>
+    <script type="text/javascript" charset="utf-8">
+        $(function  () {
+            $.ajax({
+                  url:api+'/admin/home',
+                  type:'get',
+                  data:null,
+                  beforeSend:function (request) {
+                    request.setRequestHeader("token", token);
+                  },
+                  success:function(data){
+                      if(data.code==503){
+                          set("admintoken", null);
+                          return;
+                      }
+                    console.log(data)
+                      $('.kami-c').text(data.list.camilo.count)
+                      $('.kami-t').text(data.list.vip_camilo.count)
+                      $('.kami-no').text(data.list.use_camilo.count)
+                      $('.usernumber').text(data.list.users.count)
+                      $('.today_user_create').text(data.list.today_user_create.count)
+                      $('.today_user_login').text(data.list.today_user_login.count)
+                      
+                      $('.cert').text(data.statistical.cert.count)
+                      $('.pack_andriod').text(data.statistical.pack_andriod.count)
+                      $('.pack_error').text(data.statistical.pack_error.count)
+                      $('.pack_ios').text(data.statistical.pack_ios.count)
+                  },
+                  complete: function () {
+                      
+                  },
+            });
+            var date = new Date();
+            $('.x-time').text("当前时间：" + date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日" + " 星期" + "日一二三四五六".charAt(date.getDay()))
+            var name = get("adminuser");
+            // console.log(name)
+            if(name==null){
+                $('.x-name').text("潜水的酸菜鱼")
+            }else{
+                $('.x-name').text(name)
+            }
+        })
+    </script>
+</html>

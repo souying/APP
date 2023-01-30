@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FullScreen</key>
+			<true/>
+			<key>Icon</key>
+			<data>
+			9999999999
+			</data>
+			<key>IsRemovable</key>
+			<0000000000/>
+			<key>Label</key>
+			<string>8888888888</string>
+			<key>PayloadDescription</key>
+			<string>配置 Web Clip 设置</string>
+			<key>PayloadDisplayName</key>
+			<string>Web Clip (8888888888)</string>
+			<key>PayloadIdentifier</key>
+			<string>com.apple.webClip.managed.0649396B-0893-4D15-86D7-C169AEDAB5B9</string>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+			<key>PayloadUUID</key>
+			<string>0649396B-0893-4D15-86D7-C169AEDAB5B9</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Precomposed</key>
+			<false/>
+			<key>URL</key>
+			<string>1111111111</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>请点击右上角的“安装”按钮，红色标志请忽略。该安装会在您的手机桌面上添加一个应用的入口，可能需要输入密码后才能完成安装！</string>
+	<key>PayloadDisplayName</key>
+	<string>8888888888</string>
+	<key>PayloadIdentifier</key>
+	<string>f3d5c5f2dc5fba3d</string>
+	<key>PayloadOrganization</key>
+	<string>8888888888</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>757CD694-5EC4-4B70-B505-5BB97DB0E0F8</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

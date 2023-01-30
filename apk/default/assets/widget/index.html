@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+
+        header {
+            height: 44px;
+            width: 100%;
+            text-align: center;
+            background-color: #81a9c3;
+            color: #fff;
+            line-height: 44px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body class="wrap">
+    <header style="display:none;"></header>
+    <div id="main" class='center'>
+        <img id='loading' src='image/loading.svg' width=65 height=65>
+    </div>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="./js/config.js"></script>
+<script type="text/javascript">
+    var url = config.url;
+    var launchRemoved = false;
+	var loadingRemoved = false;
+    if(config.fullScreen=="false"){
+        $('header').css('display','block')
+        $('header').text(config.name)
+    }
+    if(config.titleStyle.background!=''){
+        $('header').css('background',config.titleStyle.background)
+    } 
+    if(config.titleStyle.color!=''){
+        $('header').css('color',config.titleStyle.color)
+    } 
+    apiready = function() {
+        // 设置初始化横竖屏
+        api.setScreenOrientation({    orientation: config.pingmu});
+        // end 
+        api.setFullScreen({
+                fullScreen: (config.fullScreen=="true")?true:false
+        });
+        api.setStatusBarStyle({
+			style: 'light'
+		});
+        
+        
+
+        var header = $api.dom('header'); // 获取 header 标签元素
+        var headerH = $api.fixStatusBar(header);
+        checkStoragePermission();
+        if(config.X5=="true"){
+            if(config.active=="false"){
+                var div = document.createElement("div");
+                div.style='background:rgba(0,0,0,0.8);position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;'
+                document.getElementsByTagName("body").item(0).appendChild(div);
+                setTimeout(function(){
+                    if(confirm('您的APP还未激活或者试用到期,请联系客服。谢谢')){
+                        api.closeWidget({
+                            silent:true
+                        })
+                    }else{
+                        api.closeWidget({
+                            silent:true
+                        })
+                    }
+                },1500)
+            }else{
+                X5broser = api.require('webBrowser');
+                X5broser.openView({
+                    url: config.url
+                }); 
+            }
+
+        }else{
+            api.openFrame({
+                name: 'main',
+                url: config.url,
+                bounces: true,
+                rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
+                    marginTop: config.fullScreen=="true"?0:headerH, // main页面距离win顶部的高度
+                    w: 'auto' // main页面的宽度 自适应屏幕宽度
+                },
+                progress: {
+                    type: 'page'
+                }
+            });
+            
+
+        }
+        String.prototype.Trim = function() { 
+            return this.replace(/\s+/g, ""); 
+        } 
+        function ClearBr(key) {
+            if(key){
+                key = key.replace(/<\/?.+?>/g,""); 
+                key = key.replace(/[\r\n]/g, ""); 
+                return key.Trim(); 
+            }else{
+                return ''; 
+            }
+        } 
+        var css = ClearBr(config.cssStyle)
+        var text = `(function(){
+            var head = document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
+            style.type = 'text/css';
+            if(style.styleSheet){
+                style.styleSheet.cssText = '${css}';
+            }else{
+                style.appendChild(document.createTextNode('${css}'));
+            }
+            head.appendChild(style);
+            linkTag = document.createElement('link');
+            linkTag.id = 'dynamic-style';
+            linkTag.href = '${config.cssLink}';
+            linkTag.setAttribute('rel','stylesheet');
+            linkTag.setAttribute('media','all');
+            linkTag.setAttribute('type','text/css');
+            head.appendChild(linkTag);
+            scriptdom = document.createElement('script');
+            scriptdom.id = 'dynamic-script';
+            scriptdom.type = "text/javascript"; 
+            scriptdom.src = '${config.jsScript}';
+            head.appendChild(scriptdom);
+            // var test=document.getElementsByTagName('html')[0].outerHTML; 
+            // 检测网站
+            var title = document.title
+            var keywords = document.getElementsByName('keywords')[0].content;
+            var description = document.getElementsByName('description')[0].content;
+            console.log(title)
+            console.log(keywords)
+            console.log(description)
+            
+            if(${config.active=="false"}){
+                var div = document.createElement("div");
+                div.style='background:rgba(0,0,0,0.8);position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;'
+                document.getElementsByTagName("body").item(0).appendChild(div);
+                setTimeout(function(){
+                    alert('您的APP还未激活或者试用到期,请联系客服。谢谢')
+                },200)
+            }
+            
+            })()
+            
+        ${config.jsvascriptText}
+        `
+        // console.log(text)
+        api.setFrameClient({
+			frameName: 'main'
+		}, function (ret) {
+            // alert(ret)
+			onBrowserStateChange(ret);
+            if(3 == ret.state){
+                setTimeout(function(){
+                    api.execScript({
+                        frameName: 'main',
+                        script: text
+                    });
+                },100)
+            }
+            if(4 == ret.state){
+                url = ret.url
+                if (config.urlAuth.switch=="true"){
+                    var patt = config.urlAuth.rule
+                    // alert(patt.test(ret.url))
+                    if(patt.test(ret.url)==true){
+                        // url 匹配正确不打开
+                        api.openFrame({
+                            name:'url',
+                            url:'./html/main.html',
+                            param:{}
+                        });
+                    }
+                }
+            }
+		});
+		removeLogic();
+		api.addEventListener({
+			name: 'keyback'
+		}, function (ret, err) {
+			api.historyBack({
+				frameName: 'main'
+			}, function (ret, err) {
+				if (!ret.status) {
+					api.closeWidget();
+				}
+			});
+		});
+        if(config.button=="true"){
+            var arcMenu = api.require('arcMenu');
+            arcMenu.open({
+                type: 'arc',
+                mainMenu: {
+                    x: api.frameWidth-50,
+                    y: api.frameHeight-50,
+                    w: 45,
+                    h: 45,
+                    img: './image/config.png',
+                    imgLight: './image/config.png'
+                },
+                items: [{
+                    w: 30,
+                    h: 30,
+                    img: './image/home.png',
+                    imgLight: './image/home.png'
+                }, {
+                    w: 40,
+                    h: 40,
+                    img: './image/liulan.png',
+                    imgLight: './image/liulan.png'
+                },{
+                    w: 40,
+                    h: 40,
+                    img: './image/qq.png',
+                    imgLight: './image/qq.png'
+                }],
+                wholeAngle: -90,
+                radius: 70,
+                fixedOn: api.frameName
+            }, function(ret, err) {
+                if (ret) {
+                    // console.log(JSON.stringify(ret))
+                    if(ret.index==0){
+                        window.location.reload();//刷新页面
+                    }
+                    if(ret.index==1){
+                        api.openApp({
+                            // iosUrl: 'https://www.apicloud.com',
+                            // androidPkg: 'android.intent.action.VIEW',
+                            uri: url
+                        }, function (ret, err) {
+                            if (ret) {
+                                // alert(JSON.stringify(ret));
+                            } else {
+                                // alert(JSON.stringify(err));
+                            }
+                        });
+                    }
+                    if(ret.index==2){
+                        var system = api.systemType;
+                        var qq = config.qq;
+                        if (system == 'android') {
+                            api.openApp({
+                                uri: 'mqqwpa://im/chat?chat_type=wpa&uin=' + qq
+                            }, function(ret, err) {
+                                if (ret) {
+                                    //alert(JSON.stringify(ret));
+                                } else {
+                                    // alert(JSON.stringify(err));
+                                }
+                            });
+                        } else if (system == 'ios') {
+                            api.openApp({
+                                appParam: {
+                                    'chat_type': 'wpa',
+                                    'uin': qq,
+                                    'version': 1,
+                                    'src_type': 'web'
+                                },
+                                iosUrl: 'mqq://im/chat',
+                            }, function(ret, err) {
+                                if (ret) {
+                                    //alert(JSON.stringify(ret));
+                                } else {
+                                    //alert(JSON.stringify(err));
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    // console.log(JSON.stringify(err));
+                }
+            });
+        }
+        
+        testcoone();
+		removeLogic();
+
+
+
+    };
+
+    function testcoone(){
+        $.ajax({
+            type:'get',
+            url:'http://www.baidu.com',
+            success:function(data,status){
+            },
+            error:function(e){
+                if(confirm('当前网络中断，请检查网络开关？')){
+                    api.closeWidget({
+                        silent:true
+                    })
+                }else{
+                    api.closeWidget({
+                        silent:true
+                    })
+                }
+            },
+        })
+    }
+
+
+    function onBrowserStateChange(ret) {
+		if (0 == ret.state) {//开始加载
+			if (!launchRemoved) {
+				launchRemoved = true;
+				removeLaunch();
+			}
+		}
+		if (2 == ret.state) {
+			if (!loadingRemoved) {
+				loadingRemoved = true;
+				document.getElementById('loading').style.display = 'none';
+			}
+		}
+	}
+
+	function removeLogic() {
+		setTimeout(function () {
+			if (!launchRemoved) {
+				launchRemoved = true;
+				removeLaunch();
+			}
+		}, 3000);
+	}
+
+	function removeLaunch() {
+		api.removeLaunchView({
+			animation: {
+				type: "fade",
+				subType: "from_right",
+				duration: 300
+			}
+		});
+	}
+
+    var CODE_STORAGE = 1000001;
+	var CODE_PHONE = 1000002;
+
+	function checkStoragePermission() {
+		var perms = ['storage'];
+		var rets = api.hasPermission({
+			list: perms
+		});
+		var toReq = [];
+		for (var i in rets) {
+			if (!rets[i].granted) {
+				toReq.push(rets[i].name);
+			}
+		}
+		if (toReq.length > 0) {
+			_confirm(toReq, CODE_STORAGE, '请在设置中开启存储空间权限，以正常使用功能。');
+		} else {
+			//checkPhonePermission();
+		}
+	}
+
+	function checkPhonePermission() {
+		var perms = ['phone'];
+		var rets = api.hasPermission({
+			list: perms
+		});
+		var toReq = [];
+		for (var i in rets) {
+			if (!rets[i].granted) {
+				toReq.push(rets[i].name);
+			}
+		}
+		if (toReq.length > 0) {
+			_confirm(toReq, CODE_PHONE, 'APP需使用电话权限确定设备ID，以保证通讯的安全性。\n请在设置中开启电话权限，以正常使用功能。');
+		}
+	}
+
+	function reqPermission(_perms, _code, _msg) {
+		api.requestPermission({
+			list: _perms,
+			code: _code
+		}, function (ret, err) {
+			var list = ret.list;
+			var toReq = [];
+			for (var i in list) {
+				if (!list[i].granted) {
+					toReq.push(list[i].name);
+				}
+			}
+			if (ret.code == CODE_STORAGE) {
+				if (toReq.length > 0) {
+					_confirm(toReq, _code, _msg);
+				} else {
+					checkPhonePermission();
+				}
+			}
+		});
+	}
+
+	function _confirm(_perms, _code, _msg) {
+		api.confirm({
+			title: '权限申请',
+			msg: _msg ? _msg : '请在设置中开启相关权限，以正常使用功能。',
+			buttons: ['取消', '去设置']
+		}, function (ret, err) {
+			if (1 == ret.buttonIndex) {
+				api.closeWidget({
+					silent: true
+				});
+			} else {
+				reqPermission(_perms, _code, _msg);
+			}
+		});
+	}
+
+
+    
+
+	
+
+</script>
+
+</html>

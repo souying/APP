@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>添加证书</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/oksub.css">
+	<style type="text/css" media="all">
+	    p{
+	        padding:5px;
+	        font-size:16px;
+	        color:red;
+	    }
+	</style>
+	<script type="text/javascript" src="../lib/loading/okLoading.js"></script>
+	
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<P style="color:red;">卡密请联系QQ100101065</P>
+	<form class="layui-form layui-form-pane ok-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">卡密</label>
+			<div class="layui-input-block">
+				<input type="text" name="recharge" placeholder="请输入有效得卡密" autocomplete="off" class="layui-input"
+				       lay-verify="required">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	
+	
+</div>
+<!--js逻辑-->
+<script src="../lib/layui/layui.js"></script>
+<script src="../js/api.js"></script>
+<script>
+    
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils","upload","jquery","okFly"], function () {
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+        let upload = layui.upload;
+         let $ = layui.jquery;
+         let okFly = layui.okFly;
+		okLoading.close();
+		
+		//添加验证规则verify
+    	form.verify({
+    		pass: [
+    			/^[\S]{8,16}$/
+    			, '必须8到16位，且不能出现空格'
+    		]
+    
+    	});
+
+		form.on("submit(add)", function (data) {
+		  //  console.log(data.field)
+		    var params = data.field
+			/**post请求*/
+            okFly.post(api+"/user/recharge",params,{headers: {"Token": token}}).then(function(res){
+            //   console.log(res);
+              if(res.code==200){
+                  layer.msg("充值成功！");
+              }else{
+                  layer.msg("充值失败！");
+              }
+              
+                
+            }).catch(function(err) {
+                layer.msg("充值失败！");
+            });
+			return false;
+		});
+		
+		
+	});
+	
+</script>
+</body>
+</html>

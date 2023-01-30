@@ -1,0 +1,17 @@
+{modules:[{
+		    name:'arcMenu',
+		    class:'com.uzmap.pkg.uzmodules.uzarcMenu.UzArcMenu'
+}
+,{
+    name:'webBrowser',
+    class:'com.uzmap.pkg.uzmodules.browser.BrowserModule'
+},
+{
+    name:'egPreLoad',
+    class:'com.uzmap.pkg.uzmodules.browser.ModulePreLoad'
+}
+,{
+    name:'mam',
+    class:'com.uzmap.pkg.uzmodules.uzmam.UzMAM'
+}
+]}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="page-fill">
+<head>
+    <meta charset="UTF-8">
+    <title>快速云打包 | 很赞的一键打包 - 登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="快速云打包 | 很赞的一键打包">
+    <meta name="description" content="快速云打包 | 很赞的一键打包。">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="./css/oksub.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <style>
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        .yanzheng{
+            display:none;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            background: #13f58d;
+            cursor: pointer
+        }
+    </style>
+</head>
+<body class="page-fill">
+    <div class="zp" style="display:none;background:rgba(0,0,0,0.8);width:100%;height:100%;position:fixed;top:0;left:0;z-index:999;">
+        <div id="slideBar" style="position:absolute;top:25%;left:50%;margin-left:-145px;"></div>
+    </div>
+    <div class="page-fill" id="login">
+        <form class="layui-form" style="padding-top:20px;">
+            <!--<div class="login_face"><img src="./images/logo.png"></div>-->
+            <p style="text-align:center;margin-bottom:20px;font-size:24px;color:#666;">欢迎使用云打包系统</p>
+            <div class="layui-form-item input-item">
+                <label for="username">用户名</label>
+                <input type="text" lay-verify="required" name="username" placeholder="请输入账号" autocomplete="off" id="username" class="layui-input">
+            </div>
+            <div class="layui-form-item input-item">
+                <label for="password">密码</label>
+                <input type="password" lay-verify="required|password" name="password" placeholder="请输入密码" autocomplete="off" id="password" class="layui-input">
+            </div>
+            <div class="layui-form-item input-item dyzm" style="position:relative;display:none;">
+                <div class="yanzheng">点击验证</div>
+            </div>
+            <div  class="layui-form-item input-item captcha-box yzm" style="display:none;">
+                <label for="captcha">验证码</label>
+                <input type="text" lay-verify="captcha" name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
+                <div class="img ok-none-select" id="captchaImg"></div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-block"  lay-filter="login" lay-submit="">登录</button>
+            </div>
+            <div class="login-link">
+                <a href="register.html">注册</a>
+                <!--<a href="forget.html">忘记密码?</a>-->
+            </div>
+        </form>
+    </div>
+    <!--js逻辑-->
+    <script src="./lib/layui/layui.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/slider.js"></script>
+    <script>
+        
+        
+        set("token",null);
+        set("user",null);
+        layui.use(["form", "okGVerify", "okFly", "okLayer"], function () {
+            let form = layui.form;
+            let $ = layui.jquery;
+            let okGVerify = layui.okGVerify;
+            let okFly = layui.okFly;
+            let okLayer = layui.okLayer;
+            
+            var tt = false;
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows phone/i) == "windows mobile";
+            var bIsMobile = sUserAgent.match(/mobile/i) == "mobile";
+            var bIsPlaybook = sUserAgent.match(/playbook/i) == "playbook";
+    
+            
+            
+            
+            
+            var dataList = ["0","1"];
+            var options = {
+                dataList: dataList,
+                success:function(){  
+                    console.log("show");
+                    $('.zp').hide();
+                    tt = true;
+                },
+                fail: function(){
+                    console.log("fail"); 
+                    $('.zp').show();
+                    tt = false;
+                }
+            };
+            // SliderBar("slideBar", options);
+            
+            
+            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || bIsMobile || bIsPlaybook) {
+                $('.yzm').show();
+                tt = true;
+                var verifyCode = new okGVerify("#captchaImg");
+                form.verify({
+                    password: [/^[\S]{6,30}$/, "密码必须6到30位，且不能出现空格"],
+                    captcha: function (val) {
+                        if (verifyCode.validate(val) != "true") {
+                            return verifyCode.validate(val)
+                        }
+                    }
+                });
+            }else{
+                SliderBar("slideBar", options);
+                $('.dyzm').show();
+                $('.yanzheng').show();
+                $('.yanzheng').click(function(){
+                    SliderBar("slideBar", options);
+                    tt = false;
+                    $('.zp').show();
+                })
+                    /**
+                 * 数据校验
+                 */
+                form.verify({
+                    password: [/^[\S]{6,12}$/, "密码必须6到12位，且不能出现空格"]
+                });
+            }
+            
+            
+            
+
+            
+
+            /**
+             * 表单提交
+             */
+            form.on("submit(login)", function (data) {
+                // alert(tt)
+                if(tt==false){
+                    $('.zp').show();
+                    SliderBar("slideBar", options);
+                    return false;
+                }
+                var params = data.field;
+                // console.log(params)
+                /**post请求*/
+                okFly.post(api+"/user/login", params,{headers: {"Token": token}}).then(function(res){
+                //   console.log(res);
+                  if(res.succer=="登陆成功"){
+                      okLayer.greenTickMsg("登陆成功,正在跳转", function () {
+                            set("token", res.token);
+                             set("username",params.username);
+                             window.location = "./index.html";
+                        });
+                  }else{
+                       layer.alert("密码或账号错误,请重试")
+                       if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || bIsMobile || bIsPlaybook) {
+                           tt = true;
+                       }else{
+                          tt = false; 
+                       }
+                  }
+                }).catch(function(err) {
+                  console.log(err);
+                  layer.alert("密码或账号错误,请重试")
+                });
+                
+                return false;
+            });
+
+            /**
+             * 表单input组件单击时
+             */
+            $("#login .input-item .layui-input").click(function (e) {
+                e.stopPropagation();
+                $(this).addClass("layui-input-focus").find(".layui-input").focus();
+            });
+
+            /**
+             * 表单input组件获取焦点时
+             */
+            $("#login .layui-form-item .layui-input").focus(function () {
+                $(this).parent().addClass("layui-input-focus");
+            });
+
+            /**
+             * 表单input组件失去焦点时
+             */
+            $("#login .layui-form-item .layui-input").blur(function () {
+                $(this).parent().removeClass("layui-input-focus");
+                if ($(this).val() != "") {
+                    $(this).parent().addClass("layui-input-active");
+                } else {
+                    $(this).parent().removeClass("layui-input-active");
+                }
+            })
+        });
+    </script>
+</body>
+</html>

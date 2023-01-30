@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>授权页面</title>
+  </head>
+  <body>
+    <h1>您的程序已经是正版授权</h1>
+    <p>许可证编码 : <%= lic %></p>
+    <p id="host">域名:</p>
+  </body>
+  <script>
+    host = window.location.host;
+    host2=document.domain;
+    var hostdom = document.getElementById('host');
+    hostdom.innerText = host?'域名:'+host:'域名:'+host2
+  </script>
+</html>

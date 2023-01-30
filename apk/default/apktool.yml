@@ -1,0 +1,25 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: default.apk
+compressionType: false
+doNotCompress:
+- resources.arsc
+- png
+- gif
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '15'
+  targetSdkVersion: '22'
+sharedLibrary: false
+sparseResources: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.4.1
+versionInfo:
+  versionCode: '3'
+  versionName: 0.0.3

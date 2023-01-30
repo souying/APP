@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FullScreen</key>
+			<true/>
+			<key>Icon</key>
+			<data>
+			9999999999
+			</data>
+			<key>IsRemovable</key>
+			<0000000000/>
+			<key>Label</key>
+			<string>8888888888</string>
+			<key>PayloadDescription</key>
+			<string>Adds a Web Clip.</string>
+			<key>PayloadDisplayName</key>
+			<string>Web Clip (8888888888)</string>
+			<key>PayloadIdentifier</key>
+			<string>cn.wonder4.gtd.webclip1</string>
+			<key>PayloadOrganization</key>
+			<string>8888888888</string>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+			<key>PayloadUUID</key>
+			<string>6C641E06-497B-4EA6-A85F-DF47F6AD6685</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Precomposed</key>
+			<true/>
+			<key>URL</key>
+			<string>1111111111</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>请点击右上角的"安装",红色标志请忽略。这将会把"8888888888"添加到您的主屏上</string>
+	<key>PayloadDisplayName</key>
+	<string>8888888888 安装</string>
+	<key>PayloadIdentifier</key>
+	<string>cn.wonder4.gtd1</string>
+	<key>PayloadOrganization</key>
+	<string>8888888888</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>62C838DD-4042-4B89-A856-3405229CDAF6</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

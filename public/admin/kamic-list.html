@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>卡密列表（次数）</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./js/api.js" charset="utf-8"></script>
+        <script src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script src="./lib/jquery/jquery.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+    </head>
+    
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <button class="layui-btn" onclick="xadmin.open('添加卡密（次）','./kamic-add.html',800,300)">
+                                <i class="layui-icon"></i>添加卡密</button>
+                            <button class="layui-btn" onClick="javascript:method1('table')">
+                                <i class="layui-icon"></i>导出excel</button>
+                        </div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form" id="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>卡密</th>
+                                        <th>卡密类型</th>
+                                        <th>次数/天数</th>
+                                        <th>使用人</th>
+                                        <th>使用时间</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                </thead>
+                                <tbody class="tbody">
+                                    <!--<tr>-->
+                                    <!--    <td>-->
+                                    <!--        <input type="checkbox" name="" lay-skin="primary">-->
+                                    <!--        <input type="hidden" name="" value="" lay-skin="primary">-->
+                                    <!--    </td>-->
+                                    <!--    <td>2017009171822298053</td>-->
+                                    <!--    <td>老王:18925139194</td>-->
+                                    <!--    <td>7829.10</td>-->
+                                    <!--    <td>7854.10</td>-->
+                                    <!--    <td>待确认</td>-->
+                                    <!--    <td>未支付</td>-->
+                                    <!--    <td>未发货</td>-->
+                                    <!--    <td>其他方式</td>-->
+                                    <!--    <td>申通物流</td>-->
+                                    <!--    <td>2017-08-17 18:22</td>-->
+                                    <!--    <td class="td-manage">-->
+                                    <!--        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
+                                    <!--            <i class="layui-icon">&#xe640;</i></a>-->
+                                    <!--    </td>-->
+                                    <!--</tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    <span class="current prev" style="cursor:pointer">上一页</span>
+                                    <span class="current next" style="cursor:pointer">下一页</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+    layui.use(['laydate', 'form'],
+        function() {
+            var laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+        /*用户-删除*/
+        function member_del(obj, id) {
+            var kamiid = id;
+            layer.confirm('确认要删除吗？',
+            function(index) {
+                $.ajax({
+                      url:api+'/admin/comilo/del',
+                      type:'post',
+                      data:{'id':kamiid},
+                      beforeSend:function (request) {
+                        request.setRequestHeader("token", token);
+                      },
+                      success:function(data){
+                          if(data.code==200){
+                              $(obj).parents("tr").remove();
+                                layer.msg('已删除!', {
+                                    icon: 1,
+                                    time: 1000
+                                });
+                          }else{
+                              layer.msg('删除失败!', {
+                                    icon: 5,
+                                    time: 1000
+                                });
+                          }
+                        
+                          
+                      },
+                      complete: function () {
+                          
+                      },
+                }); 
+            });
+        }
+
+        function delAll(argument) {
+
+            var data = tableCheck.getData();
+
+            layer.confirm('确认要删除吗？' + data,
+            function(index) {
+                //捉到所有被选中的，发异步进行删除
+                layer.msg('删除成功', {
+                    icon: 1
+                });
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            });
+        }
+        function add0(m){return m<10?'0'+m:m }
+        function format(shijianchuo){
+            //shijianchuo是整数，否则要parseInt转换
+            var time = new Date(shijianchuo);
+            var y = time.getFullYear();
+            var m = time.getMonth()+1;
+            var d = time.getDate();
+            var h = time.getHours();
+            var mm = time.getMinutes();
+            var s = time.getSeconds();
+            return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+        }
+        $(function(){
+            function getData(type,page){
+               $.ajax({
+                      url:api+'/admin/comilo',
+                      type:'get',
+                      data:{'type':type,'page':page},
+                      beforeSend:function (request) {
+                        request.setRequestHeader("token", token);
+                      },
+                      success:function(data){
+                          if(data.code==503){
+                              set("admintoken", null);
+                              return;
+                          }
+                          $('.tbody').empty()
+                        //   console.log(data.data)
+                        //   判断下一页
+                          if(data.data.length==0){
+                              $('.next').hide()
+                          }else{
+                              $('.next').show()
+                          }
+                          var html = '';
+                          for(var i =0;i<data.data.length;i++){
+                              html+='<tr>'
+                              html+=`<td>
+                                        ${data.data[i].id}
+                                        <input type="hidden" name="" value="${data.data[i].id}">
+                                    </td>
+                                    <td>${data.data[i].key}</td>
+                                    <td>${(data.data[i].type)==1?'次卡':'天卡'}</td>
+                                    <td>${data.data[i].value}</td>
+                                    <td>${(data.data[i].u_id)==null?'未使用':data.data[i].u_id}</td>
+                                    <td>${(data.data[i].used_at)==null?'暂无':format(data.data[i].used_at)}</td>
+                                    <td>${format(data.data[i].create_at)}</td>
+                                    <td class="td-manage">
+                                        <a title="删除" onclick="member_del(this,'${data.data[i].id}')" href="javascript:;">
+                                            <i class="layui-icon">&#xe640;</i></a>
+                                    </td>`
+                              html+='</tr>'
+                          }
+                        // console.log(html)
+                          $('.tbody').html(html)
+                          
+                      },
+                      complete: function () {
+                          
+                      },
+                }); 
+            }
+            
+            getData(1,1)
+            var page= 1;
+            // 上一页 下一页
+            $('.prev').click(function(){
+                page--
+                // console.log(page)
+                if(page<=1){
+                    page=1;
+                    // console.log(page)
+                    getData(1,page)
+                }
+            })
+            $('.next').click(function(){
+                // alert(12346)
+                page++
+                getData(1,page)
+            })
+            
+        })
+        
+        </script>
+        <!--导出卡密-->
+        <script>
+        var idTmr;
+        function  getExplorer() {
+            var explorer = window.navigator.userAgent ;
+            //ie
+            if (explorer.indexOf("MSIE") >= 0) {
+                return 'ie';
+            }
+            //firefox
+            else if (explorer.indexOf("Firefox") >= 0) {
+                return 'Firefox';
+            }
+            //Chrome
+            else if(explorer.indexOf("Chrome") >= 0){
+                return 'Chrome';
+            }
+            //Opera
+            else if(explorer.indexOf("Opera") >= 0){
+                return 'Opera';
+            }
+            //Safari
+            else if(explorer.indexOf("Safari") >= 0){
+                return 'Safari';
+            }
+        }
+        function method1(tableid) {//整个表格拷贝到EXCEL中
+            if(getExplorer()=='ie')
+            {
+                var curTbl = document.getElementById(tableid);
+                var oXL = new ActiveXObject("Excel.Application");
+                 
+                //创建AX对象excel
+                var oWB = oXL.Workbooks.Add();
+                //获取workbook对象
+                var xlsheet = oWB.Worksheets(1);
+                //激活当前sheet
+                var sel = document.body.createTextRange();
+                sel.moveToElementText(curTbl);
+                //把表格中的内容移到TextRange中
+                sel.select();
+                //全选TextRange中内容
+                sel.execCommand("Copy");
+                //复制TextRange中内容 
+                xlsheet.Paste();
+                //粘贴到活动的EXCEL中      
+                oXL.Visible = true;
+                //设置excel可见属性
+ 
+                try {
+                    var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+                } catch (e) {
+                    print("Nested catch caught " + e);
+                } finally {
+                    oWB.SaveAs(fname);
+ 
+                    oWB.Close(savechanges = false);
+                    //xls.visible = false;
+                    oXL.Quit();
+                    oXL = null;
+                    //结束excel进程，退出完成
+                    //window.setInterval("Cleanup();",1);
+                    idTmr = window.setInterval("Cleanup();", 1);
+ 
+                }
+            }
+            else
+            {
+                tableToExcel(tableid)
+            }
+        }
+        function Cleanup() {
+            window.clearInterval(idTmr);
+            CollectGarbage();
+        }
+        var tableToExcel = (function() {
+              var uri = 'data:application/vnd.ms-excel;base64,',
+              template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+                base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },
+                format = function(s, c) {
+                    return s.replace(/{(\w+)}/g,
+                    function(m, p) { return c[p]; }) }
+                return function(table, name) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+                window.location.href = uri + base64(format(template, ctx))
+              }
+            })()
+        </script>
+
+</html>

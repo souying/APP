@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>添加证书</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/oksub.css">
+	<style type="text/css" media="all">
+	    p{
+	        padding:5px;
+	        font-size:16px;
+	        color:red;
+	    }
+	</style>
+	<script type="text/javascript" src="../lib/loading/okLoading.js"></script>
+	
+</head>
+<body>
+<div class="ok-body">
+    <p>安卓证书在线制作工具是一个在线生成和制作安卓开发者证书的工具，通过工具可以非常简单直观的制作开发证书。只需要输入证书的别名，密码和创建者名称或者公司名称即可创建安卓证书</p>
+    <p>别名：拼音字符，必填，证书别名，从证书文件中读取证书时需要知道别名</p>
+    <p>密码：拼音字母类数字，必填，必须超过6个字符 ，证书保护密码，在打开证书时需要输入密码，请保存好密码</p>
+    <p>组织名称：必填，证书创建者名称，会显示在证书信息里面，可以是公司名称，组织名称或者个人名称</p>
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">证书别名</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" placeholder="拼音字符，必填，证书别名，从证书文件中读取证书时需要知道别名" autocomplete="off" class="layui-input"
+				       lay-verify="required|pass">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">证书密码</label>
+			<div class="layui-input-block">
+				<input type="text" name="password" placeholder="拼音字母类数字，必填，必须超过6个字符 ，证书保护密码，在打开证书时需要输入密码，请保存好密码" autocomplete="off" class="layui-input" lay-verify="required|pass">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">组织名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="organization" placeholder="组织名称：必填，证书创建者名称，会显示在证书信息里面，可以是公司名称，组织名称或者个人名称" autocomplete="off" class="layui-input" lay-verify="required|pass">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	
+</div>
+<!--js逻辑-->
+<script src="../lib/layui/layui.js"></script>
+<script src="../js/api.js"></script>
+<script>
+    
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils","upload","jquery","okFly"], function () {
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+        let upload = layui.upload;
+         let $ = layui.jquery;
+         let okFly = layui.okFly;
+		okLoading.close();
+		
+		//添加验证规则verify
+    	form.verify({
+    		pass: [
+    			/^[\S]{8,16}$/
+    			, '必须8到16位，且不能出现空格'
+    		]
+    
+    	});
+
+		form.on("submit(add)", function (data) {
+		    console.log(data.field)
+		    var params = data.field
+			/**post请求*/
+            okFly.get(api+"/api/keyStore",params,{headers: {"Token": token}}).then(function(res){
+              console.log(res);
+              if(res.succer==true){
+                    window.open(res.url)
+                    layer.msg("证书生成成功");
+                }else{
+                    layer.msg("证书生成失败！");
+                }
+                
+            }).catch(function(err) {
+                layer.msg("证书生成失败！");
+            });
+			return false;
+		});
+		
+		
+	});
+	
+</script>
+</body>
+</html>

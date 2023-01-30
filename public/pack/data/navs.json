@@ -1,0 +1,60 @@
+[
+    {
+        "title": "控制台",
+        "href": "pages/console.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe654;",
+        "spread": true,
+        "isCheck": true
+    },
+    {
+        "title": "充值中心(卡密)",
+        "href": "pages/add-recharge.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe705;",
+        "spread": true
+    },
+    {
+        "title": "打包苹果(IOS)",
+        "href": "pages/add-ios.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe6ac;",
+        "spread": true
+    },
+    {
+        "title": "我的打包(IOS)",
+        "href": "pages/ios-list.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe729;",
+        "spread": true
+    },
+    {
+        "title": "打包安卓(APK)",
+        "href": "pages/add-apk.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe705;",
+        "spread": true
+    },
+    {
+        "title": "我的打包(APK)",
+        "href": "pages/apk-list.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe729;",
+        "spread": true
+    },
+    {
+        "title": "证书生成(安卓)",
+        "href": "pages/add-key.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe706;",
+        "spread": true
+    },
+    {
+        "title": "我的证书(安卓)",
+        "href": "pages/key-list.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe67c;",
+        "spread": true
+    }
+
+]

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" package="com.v100101065.dbb" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" android:protectionLevel="signature"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <application android:allowBackup="false" android:hardwareAccelerated="true" android:icon="@drawable/uz_icon" android:label="@string/app_name" android:largeHeap="true" android:name="com.uzmap.pkg.uzapp.UZApplication" android:requestLegacyExternalStorage="true" android:usesCleartextTraffic="true">
+        <meta-data android:name="uz_version" android:value="3.0.5"/>
+        <meta-data android:name="android.max_aspect" android:value="2.4"/>
+        <meta-data android:name="notch.config" android:value="portrait|landscape"/>
+        <meta-data android:name="android.notch_support" android:value="true"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:configChanges="keyboard|keyboardHidden|locale|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen" android:label="@string/app_name" android:launchMode="singleTop" android:name="com.uzmap.pkg.LauncherUI" android:theme="@style/AppTheme" android:windowSoftInputMode="adjustNothing|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboard|keyboardHidden|locale|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen" android:exported="true" android:label="@string/app_name" android:launchMode="singleTask" android:name="com.uzmap.pkg.EntranceActivity" android:screenOrientation="portrait" android:theme="@style/AppTheme" android:windowSoftInputMode="adjustUnspecified|stateUnspecified"/>
+        <provider android:authorities="com.v100101065.dbb.ups" android:exported="false" android:label="udmg" android:name="com.uzmap.pkg.uzapp.UProvider"/>
+        <provider android:authorities="com.v100101065.dbb.upms" android:exported="false" android:grantUriPermissions="true" android:name="com.uzmap.pkg.uzapp.DataProvider"/>
+        <service android:enabled="true" android:label="upns" android:name="com.uzmap.pkg.uzsocket.UPnsService" android:process=":remote"/>
+        <receiver android:enabled="true" android:exported="false" android:label="upns" android:name="com.uzmap.pkg.uzapp.UPExtraBridge" android:process=":remote">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.apicloud.notification"/>
+            </intent-filter>
+        </receiver>
+        <activity android:alwaysRetainTaskState="true" android:configChanges="keyboardHidden|orientation|screenSize" android:exported="false" android:launchMode="singleTask" android:name="com.tencent.smtt.sdk.VideoActivity">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:alwaysRetainTaskState="true" android:configChanges="keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:name="com.uzmap.pkg.uzmodules.browser.BrowserActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <meta-data android:name="android.support.VERSION" android:value="26.0.0"/>
+    </application>
+</manifest>

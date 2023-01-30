@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>编辑用户</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="./css/font.css">
+        <link rel="stylesheet" href="./css/xadmin.css">
+        <script src="./js/api.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+        <!--[if lt IE 9]>
+            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]--></head>
+    
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input  type="hidden" id="L_id" name="id" required="" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>用户名</label>
+                        <div class="layui-input-inline">
+                            <input disabled="disabled" type="text" id="L_username" name="username" required=""  autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_money" class="layui-form-label">
+                            <span class="x-red">*</span>次数</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_money" name="money" required=""  autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_vip" class="layui-form-label">
+                            <span class="x-red">*</span>vip时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_vip" name="vip" required=""  autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label"></label>
+                        <button class="layui-btn" lay-filter="add" lay-submit="">修改</button></div>
+                </form>
+            </div>
+        </div>
+        <script>
+        layui.use(['form', 'layer'],
+            function() {
+                $ = layui.jquery;
+                var form = layui.form,
+                layer = layui.layer;
+    
+                function add0(m){return m<10?'0'+m:m }
+                function format(shijianchuo){
+                    // console.log(shijianchuo)
+                    //shijianchuo是整数，否则要parseInt转换
+                    var time = new Date(shijianchuo);
+                    var y = time.getFullYear();
+                    var m = time.getMonth()+1;
+                    var d = time.getDate();
+                    var h = time.getHours();
+                    var mm = time.getMinutes();
+                    var s = time.getSeconds();
+                    return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+                }
+                function zhuanhuan(stringTime){
+                    // var stringTime = "2014-07-10 10:21:12";
+                    var timestamp2 = stringTime.replace(/-/g, '/')   //为了兼容IOS，需先将字符串转换为'2018/9/11 9:11:23'
+                    timestamp2 = Date.parse(timestamp2)    //返回'2018-9-12 9:11:23'的时间戳
+                    // console.log(stringTime + "的时间戳为：" + timestamp2);
+                    return timestamp2;
+                }
+                function getQueryVariable(variable){
+                   var query = window.location.search.substring(1);
+                   var vars = query.split("&");
+                   for (var i=0;i<vars.length;i++) {
+                           var pair = vars[i].split("=");
+                           if(pair[0] == variable){return pair[1];}
+                   }
+                   return(false);
+                }
+                var id = getQueryVariable("id");
+                var username = getQueryVariable("username");
+                var money = getQueryVariable("money");
+                var vip = getQueryVariable("vip");
+                $("#L_id").val(id)
+                $("#L_username").val(username)
+                $("#L_money").val(money)
+                if(vip!="null"){
+                    
+                    $("#L_vip").val(format(parseInt(vip)))
+                }else{
+                    $("#L_vip").val("2020-01-01 00:00:00")
+                }
+ 
+                
+                //自定义验证规则
+                form.verify({
+                    nikename: function(value) {
+                        if (value.length < 5) {
+                            return '昵称至少得5个字符啊';
+                        }
+                    },
+                    pass: [/(.+){6,12}$/, '密码必须6到12位'],
+                    repass: function(value) {
+                        if ($('#L_pass').val() != $('#L_repass').val()) {
+                            return '两次密码不一致';
+                        }
+                    }
+                });
+
+                //监听提交
+                form.on('submit(add)',
+                function(datas) {
+                    datas.field.vip = zhuanhuan(datas.field.vip);
+                    $.ajax({
+                          url:api+'/admin/list/edit',
+                          type:'post',
+                          data:datas.field,
+                          beforeSend:function (request) {
+                            request.setRequestHeader("token", token);
+                          },
+                          success:function(data){
+                              if(data.code==503){
+                                  set("admintoken", null);
+                                  layer.alert("请重新登陆");
+                                  return;
+                              }
+                              layer.alert("编辑信息成功", {
+                                    icon: 6
+                                },
+                                function() {
+                                    //   获得frame索引
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    //关闭当前frame
+                                    parent.layer.close(index);
+                                });
+                              
+                          },
+                          complete: function () {
+                              
+                          },
+                    });
+                    
+                    return false;
+                });
+
+            });
+            
+            
+            </script>
+    </body>
+
+</html>
