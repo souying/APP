@@ -1,6 +1,6 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
-  <a href="106.126.11.114:5088/admin">
+  <a href="http://106.126.11.114:5088/admin">
     一键打包手机应用演示 账号admin 密码123456 
   </a>
 </p>
