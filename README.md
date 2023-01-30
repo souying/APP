@@ -46,33 +46,32 @@ app:
 Tips: 
 - 防止泛滥（需要许可）（免费） 
 - 用户任何用途于原作者无关
+- 使用node 16.15.0 版本 其他可能会有不可预知的问题
 
-安装方式一：Supervisord & PM2 & nohup 启动守护
+安装方式一：PM2启动守护
 ```shell
-# 创建目录并进入
-mkdir QLTools && cd QLTools
+# 安装程序额外的java 环境
+yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/onePack.sh && sh install.sh
 
-# 给予权限
-chmod 755 程序名称
+# 下载程序
+git https://github.com/souying/APP.git
 
-# 启动程序排查启动错误
-./程序名称
+# 进程序目录
+cd xxx  
 
-# 程序无误后点击下方教程查看程序后台守护教程
+# 安装依赖
+npm install
+
+# 启动
+npm start
+
+# 如果程序报错 请查看上面的 详细安装文档
+
 ```
 
-教程地址：[青龙Tools的后台进程守护教程（附反代域名）](https://6b7.org/460.html)
-
-安装方式二、Docker启动
+安装方式二、Docker 暂时不支持
 ```shell
-# 创建QLTools目录并进入
-mkdir qltools && cd qltools
 
-# Docker版本提供架构：amd64、arm64、arm-7
-docker run --restart=always -itd --name QLTools -v $PWD/config:/QLTools/config -v $PWD/plugin:/QLTools/plugin -p 15000:15000 nuanxinqing123/qltools:latest
-
-# 更新步骤：后台点击更新，稍等5分钟左右。手动重启容器即可完成更新（如果更新失败，请删除容器和镜像，然后重新拉取镜像启动）
-# 重启命令：docker restart QLTools
 ```
 
 ## 🎯开发计划
