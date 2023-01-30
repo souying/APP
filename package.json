@@ -6,6 +6,9 @@
     "start": "node ./bin/www",
     "restart": "pm2 start ./bin/www --watch"
   },
+  "engines": {
+    "node": "=16.15.0"
+  },
   "bin": "./bin/www",
   "pkg": {
     "scripts": [],
