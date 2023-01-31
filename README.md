@@ -68,9 +68,11 @@ npm start
 # PM2启动
 pm2 start bin/www
 
-# 如果程序报错 系统缺失libstdc.so_.6.0.26 执行如下命令 查看有否1.3.8
+# 如果程序报错 系统缺失libstdc.so_.6.0.26 执行如下命令 查看有否GLIBCXX 1.3.8
 
 strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+
+# 没有请执行一下步骤
 
 cd /usr/local/lib64/
 # 下载最新版本的`下载最新版本的libstdc.so_.6.0.26`
