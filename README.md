@@ -48,31 +48,11 @@ Tips:
 - 用户任何用途于原作者无关
 - 使用node 16.15.0 版本 其他可能会有不可预知的问题
 
-安装方式一：PM2启动守护
+安装方式一：PM2启动守护（分步骤安装启动）
 ```shell
-# 安装程序额外的java 环境
-yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/onePack.sh && sh install.sh
-
-# 下载程序
-git https://github.com/souying/APP.git
-
-# 进程序目录
-cd xxx  
-
-# 安装依赖
-npm install
-
-# 启动
-npm start
-
-# PM2启动
-pm2 start bin/www
-
-# 如果程序报错 系统缺失libstdc.so_.6.0.26 执行如下命令 查看有否GLIBCXX 1.3.8
-
 strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
 
-# 没有请执行一下步骤
+#系统缺失libstdc.so_.6.0.26 执行如下命令 查看有否GLIBCXX 1.3.8
 
 cd /usr/local/lib64/
 # 下载最新版本的`下载最新版本的libstdc.so_.6.0.26`
@@ -91,11 +71,30 @@ ln -s libstdc++.so.6.0.26 libstdc++.so.6
 # 查看新版本，成功
 strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
 
+# 安装程序额外的java 环境
+yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/Pack.sh && sh install.sh
+
+# 下载程序
+git https://github.com/souying/APP.git
+
+# 进程序目录
+cd xxx  
+
+# 安装依赖
+npm install
+
+# 启动
+npm start
+
+# PM2启动
+pm2 start bin/www
+
 ```
 
 安装方式二、Docker 暂时不支持
 ```shell
-
+#脚本一键安装
+yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/onePack.sh && sh install.sh
 ```
 
 ## 🎯开发计划
