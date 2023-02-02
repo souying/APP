@@ -73,7 +73,7 @@ ln -s libstdc++.so.6.0.26 libstdc++.so.6
 strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
 
 # 安装程序额外的java 环境
-yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/Pack.sh && sh install.sh
+yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/Pack.sh && sh install.sh
 
 # 下载程序
 git https://github.com/souying/APP.git
@@ -95,7 +95,7 @@ pm2 start bin/www
 安装方式二、Docker 暂时不支持
 ```shell
 #脚本一键安装
-yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/onePack.sh && sh install.sh
+yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/onePack.sh && sh install.sh
 ```
 
 ## 🎯开发计划
