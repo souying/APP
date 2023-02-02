@@ -6,7 +6,8 @@
 </p>
 
 <h1 align="center">一键打包手机应用</h1>
-<p><a href="https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda">安装教程</a></p>
+<p><a href="https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda">程序安装教程</a></p>
+<p><a href="https://docs.qq.com/doc/DUURmbGRjQXRWSndS">ios绿标签名教程</a></p>
 
 ## 🍭功能介绍
 - 支持打包ios应用
