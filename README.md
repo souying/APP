@@ -112,6 +112,6 @@ QQ交流群：479513463
 
 tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)
 
-【悬赏】
+【打赏】
 ![悬赏](https://cdn.365api.cn/onePack/xs.png)
 
