@@ -76,7 +76,7 @@ strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
 yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/Pack.sh && sh install.sh
 
 # 下载程序
-git https://github.com/souying/APP.git
+git clone https://github.com/souying/APP.git
 
 # 进程序目录
 cd xxx  
