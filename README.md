@@ -6,7 +6,8 @@
 </p>
 
 <h1 align="center">一键打包手机应用</h1>
-<p><a href="https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda">安装教程</a></p>
+<p><a href="https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda">程序安装教程</a></p>
+<p><a href="https://docs.qq.com/doc/DUURmbGRjQXRWSndS">ios绿标签名教程</a></p>
 
 ## 🍭功能介绍
 - 支持打包ios应用
@@ -72,10 +73,10 @@ ln -s libstdc++.so.6.0.26 libstdc++.so.6
 strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
 
 # 安装程序额外的java 环境
-yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/Pack.sh && sh install.sh
+yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/Pack.sh && sh install.sh
 
 # 下载程序
-git https://github.com/souying/APP.git
+git clone https://github.com/souying/APP.git
 
 # 进程序目录
 cd xxx  
@@ -94,7 +95,7 @@ pm2 start bin/www
 安装方式二、Docker 暂时不支持
 ```shell
 #脚本一键安装
-yum install -y wget && wget -O install.sh http://cdn.365api.cn/onePack/onePack.sh && sh install.sh
+yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/onePack.sh && sh install.sh
 ```
 
 ## 🎯开发计划
@@ -110,4 +111,9 @@ Email：100101065@qq.com
 QQ交流群：479513463
 
 tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)
+![悬赏](https://cdn.365api.cn/onePack/xs.png)
+
+## 🎯打赏列表（排名不分前后）
+
+*A遗失     50rmb
 
