@@ -116,4 +116,5 @@ tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)
 ## 🎯打赏列表（排名不分前后）
 
 *A遗失     50rmb
+艾 涛      18.88rmb
 
