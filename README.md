@@ -110,11 +110,11 @@ Email：100101065@qq.com
 
 QQ交流群：479513463
 
-tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)
-![悬赏](https://cdn.365api.cn/onePack/xs.png)
+tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)  
+![悬赏](https://cdn.365api.cn/onePack/xs.png)  
 
-## 🎯打赏列表（排名不分前后）
+## 🎯打赏列表（排名不分前后） 
 
-*A遗失     50rmb
-艾 涛      18.88rmb
+*A遗失     50rmb  
+艾 涛      18.88rmb  
 
