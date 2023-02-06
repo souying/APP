@@ -1,0 +1,11 @@
+  # 手动 下载Dockerfile 后 build docker build . -t app:1
+  # wget https://raw.githubusercontent.com/souying/APP/master/Dockerfile && build docker build . -t app:1
+  # mkdir /root/pack
+  # touch /root/pack/licence.txt
+  app:
+    container_name: app
+    ports:
+        - '5088:5088'
+    image: app:1
+    volumes:
+        - /root/pack/licence.txt:/home/pack/lic/licence.txt
