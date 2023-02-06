@@ -113,7 +113,7 @@ QQ交流群：479513463
 tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)  
 ![悬赏](https://cdn.365api.cn/onePack/xs.png)  
 
-## 🎯打赏列表（排名不分前后） 
+## 🎯打赏列表（排名不分前后,感谢认可和支持） 
 
 *A遗失     50rmb  
 艾 涛      18.88rmb  
