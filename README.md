@@ -98,6 +98,26 @@ pm2 start bin/www
 yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/onePack.sh && sh install.sh
 ```
 
+
+安装方式三、Docker&docker-compose
+```shell
+# 下载文件
+# 安装docker和docker-compose
+
+curl -fsSL https://get.docker.com | bash -s docker #国外服务器
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun #国内服务器
+
+git clone https://github.com/souying/APP /root/pack
+# 根据实际需要修改docker-compose.yml 
+docker-compose up -d
+
+# 获取授权修改 licence.txt
+# 重启docker
+docker restart packapp
+
+```
+
+
 ## 🎯开发计划
 
 开发计划 & 进度：暂定
