@@ -58,6 +58,9 @@
     "sqlite3": "^5.0.2",
     "step": "^1.0.0",
     "xmldom": "^0.6.0",
-    "zip-local": "^0.3.4"
+    "zip-local": "^0.3.4",
+    "@suchipi/webview": "^0.2.1",
+    "shelljs": "^0.8.4",
+    "yargs-parser": "^20.2.0"
   }
 }

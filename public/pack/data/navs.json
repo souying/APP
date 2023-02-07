@@ -43,6 +43,20 @@
         "spread": true
     },
     {
+        "title": "打包window(EXE)",
+        "href": "pages/add-exe.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe705;",
+        "spread": true
+    },
+    {
+        "title": "我的打包(EXE)",
+        "href": "pages/exe-list.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe729;",
+        "spread": true
+    },
+    {
         "title": "证书生成(安卓)",
         "href": "pages/add-key.html",
         "fontFamily": "ok-icon",
