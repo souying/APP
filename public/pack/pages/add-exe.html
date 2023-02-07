@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>添加exe</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/oksub.css">
+	<script type="text/javascript" src="../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">应用名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="appname" placeholder="请输入应用名称，最多是个字符" autocomplete="off" class="layui-input"
+				       lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">网站地址</label>
+			<div class="layui-input-block">
+				<input type="text" name="url" placeholder="请输入网站地址，以http://或https://开头，最多200个字符" autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">应用类型</label>
+			<div class="layui-input-block">
+				<select name="role">
+				    <option value="1">正式版本</option>
+					<option value="0">试用版本</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--js逻辑-->
+<script src="../lib/layui/layui.js"></script>
+<script src="../js/api.js"></script>
+<script>
+    
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils","upload","jquery","okFly"], function () {
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+        let upload = layui.upload;
+         let $ = layui.jquery;
+        let okFly = layui.okFly;
+		okLoading.close();
+		
+		
+
+		laydate.render({elem: "#birthday", type: "datetime"});
+
+		form.verify({
+			birthdayVerify: [/^((((1[6-9]|[2-9]\d)\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\d)\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\d|30))|(((1[6-9]|[2-9]\d)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))(\s(([01]\d{1})|(2[0123])):([0-5]\d):([0-5]\d))?$/, '日期格式不正确']
+		});
+
+		form.on("submit(add)", function (data) {
+		    console.log(data.field)
+		    var params = data.field
+// 			okUtils.ajax("/user/addUser", "post", data.field, true).done(function (response) {
+// 				console.log(response);
+// 				okLayer.greenTickMsg("添加成功", function () {
+// 					parent.layer.close(parent.layer.getFrameIndex(window.name));
+// 				});
+// 			}).fail(function (error) {
+// 				console.log(error)
+// 			});
+
+            /**post请求*/
+            okFly.post(api+"/api/exepack",params,{headers: {"Token": token}}).then(function(res){
+              console.log(res);
+              if(res.code==200){
+                  layer.msg("提交成功！");
+              }else{
+                  layer.msg("提交失败！");
+              }
+                
+            }).catch(function(err) {
+              console.log(err);
+              layer.msg("提交失败！");
+            });
+			return false;
+		});
+		
+		
+	});
+	
+</script>
+</body>
+</html>
