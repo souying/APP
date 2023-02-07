@@ -15,5 +15,4 @@ services:
         - /root/pack/openssl:/home/pack/openssl
         - /root/pack/app:/home/pack/app
         - /root/pack/keystore:/home/pack/keystore
-        - /root/pack/openssl:/home/pack/openssl
         
