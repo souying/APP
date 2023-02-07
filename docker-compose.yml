@@ -11,5 +11,9 @@ services:
     volumes:
         # 请先确保 : 左边对应文件及文件夹存在再启动容器 
         - /root/pack/licence.txt:/home/pack/lic/licence.txt
-        - /root/pack/program.db:/home/pack/database/program.db
+        - /root/pack/database/program.db:/home/pack/database/program.db
         - /root/pack/openssl:/home/pack/openssl
+        - /root/pack/app:/home/pack/app
+        - /root/pack/keystore:/home/pack/keystore
+        - /root/pack/openssl:/home/pack/openssl
+        
