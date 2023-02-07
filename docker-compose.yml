@@ -1,11 +1,15 @@
-  # 手动 下载Dockerfile 后 build docker build . -t app:1
-  # wget https://raw.githubusercontent.com/souying/APP/master/Dockerfile && build docker build . -t app:1
-  # mkdir /root/pack
-  # touch /root/pack/licence.txt
-  app:
-    container_name: app
+# git clone https://github.com/souying/APP /root/pack
+# docker-compose up -d
+# 请先确保 : 左边对应文件及文件夹存在再启动容器 
+version: '3.3'
+services:
+  packapp:
+    container_name: packapp
     ports:
         - '5088:5088'
-    image: app:1
+    image: nxwow/packapp:latest
     volumes:
+        # 请先确保 : 左边对应文件及文件夹存在再启动容器 
         - /root/pack/licence.txt:/home/pack/lic/licence.txt
+        - /root/pack/program.db:/home/pack/database/program.db
+        - /root/pack/openssl:/home/pack/openssl
