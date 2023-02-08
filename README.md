@@ -6,8 +6,15 @@
 </p>
 
 <h1 align="center">一键打包手机应用</h1>
-<p><a href="https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda">程序安装教程</a></p>
-<p><a href="https://docs.qq.com/doc/DUURmbGRjQXRWSndS">ios绿标签名教程</a></p>
+
+[![云打包 GitHub's stars](https://img.shields.io/github/stars/souying/APP?style=social)](https://github.com/souying/APP/stargazers)
+[![云打包 GitHub's forks](https://img.shields.io/github/forks/souying/APP?style=social)](https://github.com/souying/APP/network/members)
+[![node](https://img.shields.io/badge/node-16.15.0%20--%2016.15.0-blue.svg)](http://node.net)
+[![Release](https://img.shields.io/github/v/release/souying/APP)](https://github.com/souying/APP/releases)
+[![jsdelivr](https://data.jsdelivr.com/v1/package/gh/souying/APP/badge)](https://cdn.jsdelivr.net/gh/souying/APP@APP/)
+[![License](https://img.shields.io/badge/license-GPL_V2.0-yellowgreen.svg)](https://github.com/icret/souying/APP/master/LICENSE)
+
+[演示](http://106.126.11.114:5088) · [安装教程](https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda) · [ios绿标签名教程](https://docs.qq.com/doc/DUURmbGRjQXRWSndS) · [社区](https://github.com/souying/APP/discussions) · [Telegram](https://t.me/saobingtt)  
 
 ## 🍭功能介绍
 - 支持打包ios应用
