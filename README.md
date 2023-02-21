@@ -128,7 +128,13 @@ docker restart packapp
 
 ## 🎯开发计划
 
-开发计划 & 进度：暂定
+开发计划 & 进度：暂定  
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=labring/laf&type=Date)](https://star-history.com/#labring/laf&Date)  
+
+
 
 【联系方式】
 
