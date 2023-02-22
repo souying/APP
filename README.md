@@ -100,7 +100,7 @@ pm2 start bin/www
 
 ```
 
-安装方式二、Docker 暂时不支持
+安装方式二、shell脚本安装
 ```shell
 #脚本一键安装
 yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/onePack.sh && sh install.sh
