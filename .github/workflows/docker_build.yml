@@ -17,10 +17,10 @@ on:
       logLevel:
         description: 'Log level'   
         required: true
-        default: 'warning'
+        default: 'info'
       tags:
         required: true
-        description: '请填写镜像版本号，如1.0'
+        description: '镜像版本号,如1.0'
 
 jobs:
   buildx:
@@ -54,11 +54,8 @@ jobs:
         with:
           context: .	# 工作目录
           file: ./Dockerfile	#构建文件路径
-# 所需要的体系结构，可以在 Available platforms 步骤中获取所有的可用架构
-          platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
-# 镜像推送时间
+          platforms: linux/amd64,linux/arm64/v8
           push: ${{ github.event_name != 'pull_request' }}
-# 给清单打上多个标签
           tags: |
             nxwow/packapp:latest
             nxwow/packapp:${{github.event.inputs.tags}}
