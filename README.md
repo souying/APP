@@ -142,7 +142,7 @@ Email：100101065@qq.com
 
 【交流群】
 
-QQ交流群：479513463
+QQ交流群：346085768
 
 tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)  
 ![悬赏](https://cdn.365api.cn/onePack/xs.png)  
