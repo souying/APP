@@ -125,6 +125,12 @@ docker restart packapp
 
 ```
 
+安装方式四、Docker版本脚本安装
+```shell
+# 脚本一键安装
+curl -fsSL https://gh.nxnow.top/https://raw.githubusercontent.com/souying/APP/master/pack.sh | bash
+```
+
 
 ## 🎯开发计划
 
