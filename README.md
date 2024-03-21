@@ -14,7 +14,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/souying/APP/badge)](https://cdn.jsdelivr.net/gh/souying/APP@APP/)
 [![License](https://img.shields.io/badge/license-GPL_V2.0-yellowgreen.svg)](https://github.com/icret/souying/APP/master/LICENSE)
 
-[演示]([http://106.126.11.114:5088](https://www.tg.skin)) · [ios绿标签名教程](https://docs.qq.com/doc/DUURmbGRjQXRWSndS) · [社区](https://github.com/souying/APP/discussions) · [Telegram](https://t.me/saobingtt)  
+[ios绿标签名教程](https://docs.qq.com/doc/DUURmbGRjQXRWSndS) · [社区](https://github.com/souying/APP/discussions) · [Telegram](https://t.me/saobingtt)  
 
 ## 🍭功能介绍
 - 支持打包ios应用
