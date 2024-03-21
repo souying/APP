@@ -1,7 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
-  <a href="http://106.126.11.114:5088">
-    一键打包手机应用演示 账号admin 密码123456 
+  <a href="https://www.tg.skin">
+    一键打包手机应用演示 账号123456789 密码123456789 
   </a>
 </p>
 
@@ -14,7 +14,7 @@
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/souying/APP/badge)](https://cdn.jsdelivr.net/gh/souying/APP@APP/)
 [![License](https://img.shields.io/badge/license-GPL_V2.0-yellowgreen.svg)](https://github.com/icret/souying/APP/master/LICENSE)
 
-[演示](http://106.126.11.114:5088) · [安装教程](https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda) · [ios绿标签名教程](https://docs.qq.com/doc/DUURmbGRjQXRWSndS) · [社区](https://github.com/souying/APP/discussions) · [Telegram](https://t.me/saobingtt)  
+[演示]([http://106.126.11.114:5088](https://www.tg.skin)) · · [ios绿标签名教程](https://docs.qq.com/doc/DUURmbGRjQXRWSndS) · [社区](https://github.com/souying/APP/discussions) · [Telegram](https://t.me/saobingtt)  [安装教程](https://docs.qq.com/doc/p/f0e2d855f4eb963cbc8ae634ad7382020369dbda)安装教程已经废弃
 
 ## 🍭功能介绍
 - 支持打包ios应用
