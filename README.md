@@ -144,7 +144,7 @@ curl -fsSL https://gh.nxnow.top/https://raw.githubusercontent.com/souying/APP/ma
 
 【联系方式】
 
-Email：100101065@qq.com
+Email：as@proxy.mom
 
 【交流群】
 
