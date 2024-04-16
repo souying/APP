@@ -144,11 +144,11 @@ curl -fsSL https://gh.nxnow.top/https://raw.githubusercontent.com/souying/APP/ma
 
 【联系方式】
 
-Email：as@proxy.mom
+tg：@di5555
 
 【交流群】
 
-QQ交流群：346085768
+tg交流群 https://t.me/yunapk
 
 tg频道：[https://t.me/saobingtt](https://t.me/saobingtt)  
 ![悬赏](https://cdn.365api.cn/onePack/xs.png)  
