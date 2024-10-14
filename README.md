@@ -1,7 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
-  <a href="https://www.tg.skin">
-    一键打包手机应用演示 账号123456789 密码123456789 
+  <a href="https://www.pwa.ooo">
+    一键打包手机应用演示 新版本演示 自行注册账号
   </a>
 </p>
 
