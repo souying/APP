@@ -135,9 +135,6 @@ curl -fsSL https://gh.nxnow.top/https://raw.githubusercontent.com/souying/APP/ma
 
 开发计划 & 进度：暂定  
 
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=souying/APP&type=Date)](https://star-history.com/#souying/APP&Date)  
 
 
 
