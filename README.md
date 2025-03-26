@@ -53,57 +53,8 @@ app:
 
 Tips: 
 - 防止泛滥（需要许可）（免费） 
-- 用户任何用途于原作者无关
+- 用户任何用途于原作者无关（请不要用于违法，该程序只用户审计app安全使用！安装此程序默认同意该条款）
 - 使用node 16.15.0 版本 其他可能会有不可预知的问题
-
-安装方式一：PM2启动守护（分步骤安装启动）
-```shell
-strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
-
-#系统缺失libstdc.so_.6.0.26 执行如下命令 查看有否GLIBCXX 1.3.8
-
-cd /usr/local/lib64/
-# 下载最新版本的`下载最新版本的libstdc.so_.6.0.26`
-wget http://www.vuln.cn/wp-content/uploads/2019/08/libstdc.so_.6.0.26.zip
-# 解压
-unzip libstdc.so_.6.0.26.zip
-# 将下载的最新版本拷贝到 /usr/lib64
-cp libstdc++.so.6.0.26 /usr/lib64
-cd  /usr/lib64
-# 查看 /usr/lib64下libstdc++.so.6链接的版本
-ls -l | grep libstdc++
-# 删除原先的软连接(不放心可以备份)
-rm libstdc++.so.6
-# 使用最新的库建立软连接
-ln -s libstdc++.so.6.0.26 libstdc++.so.6
-# 查看新版本，成功
-strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
-
-# 安装程序额外的java 环境
-yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/Pack.sh && sh install.sh
-
-# 下载程序
-git clone https://github.com/souying/APP.git
-
-# 进程序目录
-cd xxx  
-
-# 安装依赖
-npm install
-
-# 启动
-npm start
-
-# PM2启动
-pm2 start bin/www
-
-```
-
-安装方式二、shell脚本安装
-```shell
-#脚本一键安装
-yum install -y wget && wget -O install.sh --no-check-certificate https://cdn.365api.cn/onePack/onePack.sh && sh install.sh
-```
 
 
 安装方式三、Docker&docker-compose
