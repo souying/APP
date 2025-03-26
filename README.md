@@ -28,11 +28,9 @@
 - 带（天数）（次数）2种卡密
 - 用户注册登陆后 自助打包
 - 也可打包window桌面版应用
-- 更多内容自行查看吧（不细说了）
 
 ## 🍳技术栈
-- 语言：nodejs java
-- Web框架：express框架
+- 语言：java
 - 日志：无
 - 数据库： SQLite
 - API文档：更新中
@@ -53,11 +51,11 @@ app:
 
 Tips: 
 - 防止泛滥（需要许可）（免费） 
-- 用户任何用途于原作者无关（请不要用于违法，该程序只用户审计app安全使用！安装此程序默认同意该条款）
+- 用户任何用途于原作者无关（请不要用于违法，该程序只用于审计app安全使用！安装此程序默认同意该条款）
 - 使用node 16.15.0 版本 其他可能会有不可预知的问题
 
 
-安装方式三、Docker&docker-compose
+安装方式一、Docker&docker-compose
 ```shell
 # 下载文件
 # 安装docker和docker-compose
@@ -75,7 +73,7 @@ docker restart packapp
 
 ```
 
-安装方式四、Docker版本脚本安装
+安装方式二、Docker版本脚本安装
 ```shell
 # 脚本一键安装
 curl -fsSL https://gh.nxnow.top/https://raw.githubusercontent.com/souying/APP/master/pack.sh | bash
